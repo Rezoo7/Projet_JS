@@ -1,6 +1,20 @@
+function JavaScriptFetch() {
+    var script = document.createElement('script');
+    script.src = "https://api.flickr.com/services/feeds/photos_public.gne?format=json&tags=" + document.getElementById("search").value;;
+    document.querySelector('head').appendChild(script);
+}
+function jsonFlickrFeed(data) {
+    var image = "";
+    data.items.forEach(function (element) {
+        image += "<img src=\"" + element.media.m + "\"/>";
+    });
+    document.getElementById("outputDiv").innerHTML = image;
+}
+
+
 $(document).ready(function(){
 
-    var cherche = $("#commune");
+    var cherche = $("#search");
     cherche.autocomplete({
         minLength :3,
         ville_startsWith : cherche.val(),
@@ -25,7 +39,8 @@ $(document).ready(function(){
     })
 
     var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-    var nombre_max = $.("#nombre").val();
+    var nombre_max = $("#nombre").val();
+    console.log("Nombre max => " + nombre_max);
 
     $.getJSON(flickerAPI, {
         tags: $("#search").val(),
