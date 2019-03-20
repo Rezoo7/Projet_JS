@@ -1,13 +1,14 @@
 $(document).ready(function(){
-    var cherhche = $("#commune");
-    cherhche.autocomplete({
+
+    var cherche = $("#commune");
+    cherche.autocomplete({
         minLength :3,
-        ville_startsWith : cherhche.val(),
+        ville_startsWith : cherche.val(),
         source : function(request,response){
             $.ajax({
-                url : 'http://localhost/tests/ProjetJS/commune.php',
+                url : 'http://localhost/projet_js/commune.php',
                 Type:"GET",
-                data: 'commune='+ cherhche.val(),
+                data: 'commune='+ cherche.val(),
                 dataType:'json',
                 success: function(data){
                     response($.map(data,function(item){
@@ -22,4 +23,21 @@ $(document).ready(function(){
                 }})
         },
     })
+
+    var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+    $.getJSON(flickerAPI, {
+        tags: $("#search").val(),
+        tagmode: "any",
+        format: "json"
+    }).done(function (result, status, xhr) {
+        $.each(result.items, function (i, item) {
+            $("<img>").attr("src", item.media.m).appendTo("#outputDiv");
+            if (i === 5) {
+                return false;
+            }
+        });
+    }).fail(function (xhr, status, error) {
+        alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+    });
+
 });
