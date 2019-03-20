@@ -25,6 +25,8 @@ $(document).ready(function(){
     })
 
     var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+    var nombre_max = $.("#nombre").val();
+
     $.getJSON(flickerAPI, {
         tags: $("#search").val(),
         tagmode: "any",
@@ -32,7 +34,7 @@ $(document).ready(function(){
     }).done(function (result, status, xhr) {
         $.each(result.items, function (i, item) {
             $("<img>").attr("src", item.media.m).appendTo("#outputDiv");
-            if (i === 5) {
+            if (i === nombre_max) {
                 return false;
             }
         });
