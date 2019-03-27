@@ -25,7 +25,7 @@ $(document).ready(function(){
     })
 
     var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-    var nombre_max = $.("#nombre").val();
+    var nombre_max = $("#nombre").val();
 
     $.getJSON(flickerAPI, {
         tags: $("#search").val(),
