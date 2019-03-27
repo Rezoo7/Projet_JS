@@ -8,16 +8,81 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
     <script type="text/javascript" src="JavaScript/script.js"></script>
+
+ 
+
+
+    <style type="text/css">
+        .onglet
+        {
+                display:inline-block;
+                margin-left:3px;
+                margin-right:3px;
+                padding:3px;
+                border:1px solid black;
+                cursor:pointer;
+        }
+        .onglet_0
+        {
+                background:#bbbbbb;
+                border-bottom:1px solid black;
+        }
+        .onglet_1
+        {
+                background:#dddddd;
+                border-bottom:0px solid black;
+                padding-bottom:4px;
+        }
+        .contenu_onglet
+        {
+                background-color:#dddddd;
+                border:1px solid black;
+                margin-top:-1px;
+                padding:5px;
+                display:none;
+        }
+        ul
+        {
+                margin-top:0px;
+                margin-bottom:0px;
+                margin-left:-10px
+        }
+        h1
+        {
+                margin:0px;
+                padding:0px;
+        }
+        </style>
 </head>
 <body>
     <h1> Mini-Projet Programmation web client riche</h1>
 
         <label for="search">Nom de Ville : </label> <input type="text" id="search" placeholder="Ville"><br><br>
         <label for="nombre"> Nombre max de photos :</label><input type="number" id="nombre"> <br>
-        <button id="submit" onclick="JavaScriptFetch()"> Rechercher </button>
+        <button id="submit"> Rechercher </button>
 
+    <div id = "outputDiv">
+  <span class="onglet_0 onglet" id="onglet_tableau" onclick="change_onglet('tableau');">Vue tableau</span>
+  <span class="onglet_0 onglet" id="onglet_photos" onclick="change_onglet('photos');" >Vue photos</span>
+    </div>
 
-    <div id = "outputDiv"> </div>
-
+    <div class="contenu_onglet" id="contenu_onglet_tableau">
+        <table>
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    
+    
+    
+    <div class="contenu_onglet" id="contenu_onglet_photos">
+        <ul id="outputPhotos">
+            
+        </ul>
+    </div> 
+        
 </body>
 </html>
+
