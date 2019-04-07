@@ -59,6 +59,27 @@ $(document).ready(function(){
     }).done(function (result, status, xhr) {
         $.each(result.items, function (i, item) {
             $(document.createElement("li")).appendTo("#outputPhotos").append($(document.createElement("img")).attr("src", item.media.m)).css("list-style","none");
+            console.log('i =' + i);
+
+           let refTable= document.getElementById("tab");
+
+            let newLine = refTable.insertRow(i);
+
+
+            if (i !== 6 || i !== 12 ||i !== 18 || i !== 24 || i !== 30 || i !== 36 || i!== 42) {
+
+                let newCel = newLine.insertCell(0);
+                $("<img>").attr("src", item.media.m).appendTo(newCel);
+
+
+            } else {
+                let newLine = refTable.insertRow(i);
+                let newCel = newLine.insertCell(1);
+                $("<img>").attr("src", item.media.m).appendTo(newCel);
+            }
+
+
+            
             $("li").on("click",function(){
                 $("#dialog").append(item.title+"</br>"+item.date_taken+"</br>"+item.description+"</br>"+item.tags)
                 $("#dialog").dialog();
@@ -76,10 +97,7 @@ $(document).ready(function(){
 })
 
 
-$("li").on("click",function(){
 
-})
-});
 
 let anc_onglet = 'tableau';
 
