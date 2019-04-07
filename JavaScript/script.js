@@ -17,6 +17,7 @@ function jsonFlickrFeed(data) {
 
 $(document).ready(function(){
 
+    //autocomplétion de champs ville
     var cherche = $("#search");
     cherche.autocomplete({
         minLength :3,
@@ -47,7 +48,8 @@ $(document).ready(function(){
     
     var recherche =null;
     var nombre_max = 0;
-
+    
+    //recherche des photos
    $("#submit").on("click", function(){
          recherche = $("#search").val();
        var nombre_max = $("#nombre").val();
@@ -58,10 +60,12 @@ $(document).ready(function(){
         tagmode: "any",
         format: "json"
     }).done(function (result, status, xhr) {
+        //ajout des photos dans la vue photos
         $.each(result.items, function (i, item) {
             $(document.createElement("li")).appendTo("#outputPhotos").append($(document.createElement("img")).attr("src", item.media.m)).css("list-style","none");
             console.log('i =' + i);
 
+            //ajout des photos dans la vue tableau
            let refTable= document.getElementById("tab");
 
             let newLine = refTable.insertRow(i);
@@ -80,9 +84,9 @@ $(document).ready(function(){
             }
 
 
-            
+            //apparition de la fenêtre modale suite au click sur l'image
             $("li").on("click",function(){
-                $("#dialog").append(item.title+"</br>"+item.date_taken+"</br>"+item.description+"</br>"+item.tags)
+                $("#dialog").append("<p>"+item.title+"</br>"+item.date_taken+"</br>"+item.description+"</br>"+item.tags+"</p>")
                 $("#dialog").dialog();
             })
 
@@ -99,7 +103,7 @@ $(document).ready(function(){
 
 })
 
-
+//partie onglet 
 let anc_onglet = 'tableau';
 
 
