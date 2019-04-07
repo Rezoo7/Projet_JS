@@ -23,7 +23,7 @@ $(document).ready(function(){
         ville_startsWith : cherche.val(),
         source : function(request,response){
             $.ajax({
-                url : 'http://localhost/tests/ProjetJS/commune.php',
+                url : 'http://localhost/JavaScript/Projet_JS/commune.php',
                 Type:"GET",
                 data: 'commune='+ cherche.val(),
                 dataType:'json',
@@ -61,6 +61,29 @@ $(document).ready(function(){
             $("<img>").attr("src", item.media.m).appendTo("#outputPhotos");
             //$("#outputPhotos").append("<li>"+$("<img>").attr("src", item.media.m)+ "</li>");
             //}
+
+            console.log('i =' + i);
+
+           let refTable= document.getElementById("tab");
+
+            let newLine = refTable.insertRow(i);
+
+
+            if (i !== 6 || i !== 12 ||i !== 18 || i !== 24 || i !== 30 || i !== 36 || i!== 42) {
+
+                let newCel = newLine.insertCell(-1);
+                $("<img>").attr("src", item.media.m).appendTo(newCel);
+
+
+            } else {
+                let newLine = refTable.insertRow(i);
+                let newCel = newLine.insertCell(0);
+                $("<img>").attr("src", item.media.m).appendTo(newCel);
+            }
+
+
+
+
             if (i === nombre_max-1) {
                 return false;
             }
@@ -72,13 +95,15 @@ $(document).ready(function(){
 })
 });
 
-var anc_onglet = 'tableau';
-change_onglet(anc_onglet)  
+let anc_onglet = 'tableau';
+
 
 function change_onglet(name){
-    document.getElementById('onglet_'+anc_onglet).className ="onglet_0 onglet";
+    document.getElementById("onglet_"+ anc_onglet).className ="onglet_0 onglet";
     document.getElementById('onglet_' + name).className ="onglet_1 onglet";
     document.getElementById('contenu_onglet_' +anc_onglet).style.display ="none";
     document.getElementById('contenu_onglet_'+name).style.display="block";
     anc_onglet =name;
     }
+
+change_onglet(anc_onglet);
