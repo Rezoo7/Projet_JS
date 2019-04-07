@@ -71,13 +71,13 @@ $(document).ready(function(){
 
             if (i !== 6 || i !== 12 ||i !== 18 || i !== 24 || i !== 30 || i !== 36 || i!== 42) {
 
-                let newCel = newLine.insertCell(-1);
+                let newCel = newLine.insertCell(0);
                 $("<img>").attr("src", item.media.m).appendTo(newCel);
 
 
             } else {
                 let newLine = refTable.insertRow(i);
-                let newCel = newLine.insertCell(0);
+                let newCel = newLine.insertCell(1);
                 $("<img>").attr("src", item.media.m).appendTo(newCel);
             }
 
