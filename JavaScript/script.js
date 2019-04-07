@@ -58,16 +58,25 @@ $(document).ready(function(){
         format: "json"
     }).done(function (result, status, xhr) {
         $.each(result.items, function (i, item) {
-            $("<img>").attr("src", item.media.m).appendTo("#outputPhotos");
-            //$("#outputPhotos").append("<li>"+$("<img>").attr("src", item.media.m)+ "</li>");
-            //}
+            $(document.createElement("li")).appendTo("#outputPhotos").append($(document.createElement("img")).attr("src", item.media.m)).css("list-style","none");
+            $("li").on("click",function(){
+                $("#dialog").append(item.title+"</br>"+item.date_taken+"</br>"+item.description+"</br>"+item.tags)
+                $("#dialog").dialog();
+            })
+
             if (i === nombre_max-1) {
                 return false;
             }
         });
     }).fail(function (xhr, status, error) {
-        alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+        $("#dialog").append("Il n'y a pas d'image pour cette ville");
+        $("#dialog").dialog();
     });
+
+})
+
+
+$("li").on("click",function(){
 
 })
 });
