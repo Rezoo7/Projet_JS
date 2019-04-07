@@ -23,7 +23,8 @@ $(document).ready(function(){
         ville_startsWith : cherche.val(),
         source : function(request,response){
             $.ajax({
-                url : 'http://localhost/JavaScript/Projet_JS/commune.php',
+                url : 'http://localhost/tests/ProjetJS/commune.php',
+                //url : 'http://localhost/JavaScript/Projet_JS/commune.php'
                 Type:"GET",
                 data: 'commune='+ cherche.val(),
                 dataType:'json',
@@ -96,7 +97,7 @@ $(document).ready(function(){
 
 })
 
-
+})
 
 
 let anc_onglet = 'tableau';
